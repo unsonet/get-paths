@@ -342,20 +342,30 @@ export class GetPaths {
     context: GetPathsProcessorContext,
     processor?: GetPathsProcessor,
   ): Promise<unknown> {
-    if (!processor) return context.stats;
+    if (!processor) {
+      return context.stats;
+    }
 
-    let result: unknown = context.stats;
+    let handled = false;
+    let result: unknown;
 
     if (processor.onItem) {
+      handled = true;
       result = await processor.onItem(context);
     }
 
     if (context.type === 'file' && processor.onFile) {
+      handled = true;
       result = await processor.onFile(context);
     }
 
     if (context.type === 'directory' && processor.onDirectory) {
+      handled = true;
       result = await processor.onDirectory(context);
+    }
+
+    if (!handled) {
+      return undefined;
     }
 
     return result;
