@@ -1,0 +1,21 @@
+{
+  "name": "@unsonet/get-paths",
+  "version": "0.1.0",
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "@unsonet/js-utils": "workspace:*",
+    "@unsonet/ignore-patterns": "workspace:*",
+    "@unsonet/minify-text": "workspace:*"
+  },
+  "bin": {
+    "get-paths": "./src/bin/get-paths.js"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "package.json"
+  ]
+}

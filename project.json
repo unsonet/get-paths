@@ -1,0 +1,38 @@
+{
+  "name": "get-paths",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/get-paths/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "manifestRootsToUpdate": ["dist/{projectRoot}"],
+      "currentVersionResolver": "git-tag",
+      "fallbackCurrentVersionResolver": "disk"
+    }
+  },
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/get-paths",
+        "main": "libs/get-paths/src/index.ts",
+        "tsConfig": "libs/get-paths/tsconfig.lib.json",
+        "assets": [
+          "libs/get-paths/*.md",
+          {
+            "input": "libs/get-paths/processors",
+            "glob": "**/*",
+            "output": "processors"
+          }
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}
